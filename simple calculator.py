@@ -1,10 +1,9 @@
 def calc():
     while True:
-        x=input("Mode(add/sub/mul/div/quit):")
+        x=input("Mode(add/sub/mul/div/rem/quit):")
         if x=="quit":
             print("Exiting the calculator. Goodbye!")
             return
-
         z=1
         if x=="add":
             # Perform addition
@@ -24,9 +23,21 @@ def calc():
                 z*=float(lst[t])
             print("Result:" + str(z))
         elif x=="div":
-            # Perform division with modulus
+            # Perform division
             y=input("Enter numbers separated by space: ")
             lst=y.split(" ")
+            if 0 in map(float,lst[1:]):
+                print("Input error, divisor must be non-zero")
+                break
+            for t in range(1,len(lst)):
+                z/=float(lst[t])
+            print("Result:"+str(z))
+        elif x=="rem":
+            y=input("Enter numbers separated by space: ")
+            lst=y.split(" ")
+            if 0 in map(float,lst[1:]):
+                print("Input error, divisor must be non-zero")
+                break
             for t in range(1,len(lst)):
                 z*=float(lst[t])
             print("Quotient:" + str(float(lst[0])//z))
@@ -41,4 +52,3 @@ while True:
     if p.lower()=="exit":
         print("Exiting the program. Goodbye!")
         break
-
